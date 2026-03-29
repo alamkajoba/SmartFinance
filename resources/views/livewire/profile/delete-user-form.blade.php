@@ -19,61 +19,77 @@ new class extends Component
 
         tap(Auth::user(), $logout(...))->delete();
 
-        $this->redirect('/', navigate: true);
+        $this->redirect('login');
     }
 }; ?>
 
-<section class="space-y-6">
-    <header>
-        <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Delete Account') }}
-        </h2>
 
-        <p class="mt-1 text-sm text-gray-600">
-            {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.') }}
-        </p>
-    </header>
 
-    <x-danger-button
-        x-data=""
-        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-    >{{ __('Delete Account') }}</x-danger-button>
+<div class="nk-block">
+    <div class="card card-bordered border-danger">
+        <div class="card-inner">
+            <div class="nk-block-head">
+                <div class="nk-block-head-content">
+                    <h5 class="title text-danger">Supprimer le compte</h5>
+                    <p>Une fois votre compte supprimé, toutes ses ressources et données seront définitivement effacées. Veuillez télécharger les données que vous souhaitez conserver avant de procéder.</p>
+                </div>
+            </div>
+            <div class="nk-block-content mt-3">
+                <button 
+                    class="btn btn-danger" 
+                    x-data="" 
+                    x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
+                >
+                    Supprimer mon compte
+                </button>
+            </div>
+        </div>
+    </div>
 
     <x-modal name="confirm-user-deletion" :show="$errors->isNotEmpty()" focusable>
-        <form wire:submit="deleteUser" class="p-6">
+        <div class="card card-bordered">
+            <form wire:submit="deleteUser" class="card-inner p-4">
+                <div class="nk-block-head">
+                    <h4 class="nk-block-title">Êtes-vous sûr de vouloir supprimer votre compte ?</h4>
+                    <p class="text-soft">
+                        Veuillez entrer votre mot de passe pour confirmer que vous souhaitez supprimer définitivement votre compte.
+                    </p>
+                </div>
 
-            <h2 class="text-lg font-medium text-gray-900">
-                {{ __('Are you sure you want to delete your account?') }}
-            </h2>
+                <div class="form-group mt-4">
+                    <label class="form-label" for="password">Mot de passe</label>
+                    <div class="form-control-wrap">
+                        <input 
+                            type="password" 
+                            wire:model="password" 
+                            id="password" 
+                            class="form-control @error('password') error @enderror" 
+                            placeholder="Entrez votre mot de passe"
+                        >
+                    </div>
+                    @error('password')
+                        <span class="text-danger small">{{ $message }}</span>
+                    @enderror
+                </div>
 
-            <p class="mt-1 text-sm text-gray-600">
-                {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
-            </p>
-
-            <div class="mt-6">
-                <x-input-label for="password" value="{{ __('Password') }}" class="sr-only" />
-
-                <x-text-input
-                    wire:model="password"
-                    id="password"
-                    name="password"
-                    type="password"
-                    class="mt-1 block w-3/4"
-                    placeholder="{{ __('Password') }}"
-                />
-
-                <x-input-error :messages="$errors->get('password')" class="mt-2" />
-            </div>
-
-            <div class="mt-6 flex justify-end">
-                <x-secondary-button x-on:click="$dispatch('close')">
-                    {{ __('Cancel') }}
-                </x-secondary-button>
-
-                <x-danger-button class="ms-3">
-                    {{ __('Delete Account') }}
-                </x-danger-button>
-            </div>
-        </form>
+                <div class="form-group mt-4 d-flex justify-content-end gx-3">
+                    <li>
+                        <button 
+                            type="button" 
+                            class="btn btn-outline-light btn-white" 
+                            x-on:click="$dispatch('close')"
+                        >
+                            Annuler
+                        </button>
+                    </li>
+                    
+                    <li>
+                        <button type="submit" class="btn btn-danger">
+                            Supprimer définitivement
+                        </button>
+                    </li>
+                </div>
+            </form>
+        </div>
     </x-modal>
-</section>
+</div>

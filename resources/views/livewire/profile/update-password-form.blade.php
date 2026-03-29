@@ -38,7 +38,7 @@ new class extends Component
     }
 }; ?>
 
-<section>
+{{-- <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900">
             {{ __('Update Password') }}
@@ -76,4 +76,68 @@ new class extends Component
             </x-action-message>
         </div>
     </form>
-</section>
+</section> --}}
+
+<div class="nk-content ">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+                <div class="nk-block-head nk-block-head-sm">
+                    <div class="nk-block-between">
+                        <div class="nk-block-head-content">
+                            <h3 class="nk-block-title page-title">Modifier le mot de passe</h3>
+                        </div><!-- .nk-block-head-content -->
+                    </div><!-- .nk-block-between -->
+                </div><!-- .nk-block-head -->
+                <div class="nk-block">
+                    <div class="card card-bordered">
+                        <div class="card-inner-group">
+                            <form wire:submit="updateProfileInformation">
+                                <div class="card-inner">
+                                    <div class="nk-block">
+                                        <div class="row gy-4">
+                                            <div class="col-xxl-3 col-md-4">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="full-name">Mot de passe actuel</label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="password" wire:model="current_password" id="update_password_current_password" class="form-control" id="name">
+                                                    </div>
+                                                </div>
+                                            </div><!--col-->
+                                            <div class="col-xxl-3 col-md-4">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="full-name">Nouveau mot de passe</label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="password" wire:model="password" id="update_password_password" class="form-control" id="current_password">
+                                                    </div>
+                                                </div>
+                                            </div><!--col-->
+                                            <div class="col-xxl-3 col-md-4">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="full-name">Confirmer le mot de passe</label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="password" wire:model="password_confirmation" id="update_password_password_confirmation" class="form-control" id="email">
+                                                    </div>
+                                                </div>
+                                            </div><!--col-->
+                                        </div><!--row-->
+                                    </div>
+                                </div><!-- .card-inner -->
+                                <div class="card-inner">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                        </div>
+                                        <x-action-message class="me-3" on="profile-updated">
+                                            <span class="text-success small">Enregistré</span>
+                                        </x-action-message>
+                                    </div><!--col-->
+                                </div><!-- .card-inner -->
+                            </form>
+                        </div>
+                    </div><!-- .card -->
+                </div><!-- .nk-block -->
+            </div>
+        </div>
+    </div>
+</div>

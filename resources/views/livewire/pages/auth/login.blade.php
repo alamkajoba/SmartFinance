@@ -12,7 +12,7 @@ new #[Layout('layouts.guest')] class extends Component
     /**
      * Handle an incoming authentication request.
      */
-    public function login(): void
+    public function login()
     {
         $this->validate();
 
@@ -20,55 +20,9 @@ new #[Layout('layouts.guest')] class extends Component
 
         Session::regenerate();
 
-        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+       return redirect()->route('user.index');
     }
 }; ?>
-{{-- 
-<div>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form wire:submit="login">
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input wire:model="form.email" id="email" class="block mt-1 w-full" type="email" name="email" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('form.email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input wire:model="form.password" id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('form.password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember" class="inline-flex items-center">
-                <input wire:model="form.remember" id="remember" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}" wire:navigate>
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</div> --}}
 
 <div>
     <div class="nk-content ">
@@ -89,30 +43,31 @@ new #[Layout('layouts.guest')] class extends Component
                             </div>
                         </div>
                     </div>
-                    <form action="#">
+                    <form wire:submit="login">
                         <div class="form-group">
                             <div class="form-label-group">
-                                <label class="form-label" for="default-01">Email or Username</label>
+                                <label class="form-label" for="default-01">Email</label>
                             </div>
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control form-control-lg" id="default-01" placeholder="Enter your email address or username">
+                                <input wire:model="form.email" type="email" class="form-control form-control-lg" id="default-01" placeholder="Enter your email address or username">
                             </div>
+                            @error('form.email') 
+                                <span class="text-danger small">{{ $message }}</span> 
+                            @enderror
                         </div>
                         <div class="form-group">
                             <div class="form-label-group">
                                 <label class="form-label" for="password">Passcode</label>
-                                <a class="link link-primary link-sm" href="html/pages/auths/auth-reset-v2.html">Forgot Code?</a>
                             </div>
                             <div class="form-control-wrap">
-                                <a href="#" class="form-icon form-icon-right passcode-switch lg" data-target="password">
-                                    <em class="passcode-icon icon-show icon ni ni-eye"></em>
-                                    <em class="passcode-icon icon-hide icon ni ni-eye-off"></em>
-                                </a>
-                                <input type="password" class="form-control form-control-lg" id="password" placeholder="Enter your passcode">
+                                <input wire:model="form.password" type="password" class="form-control form-control-lg" id="password" placeholder="Enter your passcode">
                             </div>
+                            @error('form.password') 
+                                <span class="text-danger small">{{ $message }}</span> 
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-lg btn-primary btn-block">Sign in</button>
+                            <button type="submit" class="btn btn-lg btn-primary btn-block">Sign in</button>
                         </div>
                     </form>
                 </div>

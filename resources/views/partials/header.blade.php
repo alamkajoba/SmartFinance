@@ -1,4 +1,14 @@
 <head>
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark-mode');
+                // Note : On utilise souvent documentElement (la balise <html>) 
+                // pour être sûr que c'est appliqué avant même que le <body> n'existe.
+            }
+        })();
+    </script>
     <base href="../">
     <meta charset="utf-8">
     <meta name="author" content="Softnio">
@@ -9,6 +19,6 @@
     <!-- Page Title  -->
     <title>Smart Finance | Go ahead</title>
     <!-- StyleSheets  -->
-    <link rel="stylesheet" href="./assets/css/dashlite.css?ver=3.1.2">
-    <link id="skin-default" rel="stylesheet" href="./assets/css/theme.css?ver=3.1.2">
+    <link rel="stylesheet" href="{{asset('css/dashlite.css?ver=3.1.2')}}">
+    <link id="skin-default" rel="stylesheet" href="{{asset('css/theme.css?ver=3.1.2')}}">
 </head>
