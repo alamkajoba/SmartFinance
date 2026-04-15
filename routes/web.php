@@ -5,7 +5,9 @@ use App\Livewire\Module\User\UserIndex;
 use App\Livewire\Module\User\UserUpdate;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'login');
+Route::get('/', function () {
+    return redirect()->route('login');
+});
 
 //USER ROUTES
 Route::middleware('auth')->prefix('user')->name('user.')->group(function () {
