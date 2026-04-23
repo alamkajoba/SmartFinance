@@ -8,4 +8,8 @@ class Prediction extends Model
 {
     protected $fillable = ['mois', 'montantPrevu', 'precision'];
     //
+     public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
