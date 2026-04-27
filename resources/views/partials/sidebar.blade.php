@@ -83,13 +83,10 @@
                         </a>
                         <ul class="nk-menu-sub">
                             <li class="nk-menu-item">
-                                <a href="html/pharmacy/add-medicine.html" class="nk-menu-link"><span class="nk-menu-text">Add Medicine</span></a>
+                                <a href="{{ route('categorie.create') }}" class="nk-menu-link"><span class="nk-menu-text">Ajouter une catégorie</span></a>
                             </li>
                             <li class="nk-menu-item">
-                                <a href="html/pharmacy/medicine-list.html" class="nk-menu-link"><span class="nk-menu-text">Medicine List</span></a>
-                            </li>
-                            <li class="nk-menu-item">
-                                <a href="html/pharmacy/medicine-details.html" class="nk-menu-link"><span class="nk-menu-text">Medicine Details</span></a>
+                                <a href="{{ route('categorie.index') }}" class="nk-menu-link"><span class="nk-menu-text">Voir les catégories</span></a>
                             </li>
                         </ul><!-- .nk-menu-sub -->
                     </li><!-- .nk-menu-item -->
@@ -100,10 +97,10 @@
                         </a>
                         <ul class="nk-menu-sub">
                             <li class="nk-menu-item">
-                                <a href="html/pharmacy/manufacturer.html" class="nk-menu-link"><span class="nk-menu-text">Manufacturer List</span></a>
+                                <a href="{{ route('depense.create') }}" class="nk-menu-link"><span class="nk-menu-text">Enregistrer une dépense</span></a>
                             </li>
                             <li class="nk-menu-item">
-                                <a href="html/pharmacy/manufacturer-ledger.html" class="nk-menu-link"><span class="nk-menu-text">Manufacturer Ledger</span></a>
+                                <a href="{{ route('depense.index') }}" class="nk-menu-link"><span class="nk-menu-text">Voir les dépenses</span></a>
                             </li>
                         </ul><!-- .nk-menu-sub -->
                     </li><!-- .nk-menu-item -->
@@ -114,16 +111,10 @@
                         </a>
                         <ul class="nk-menu-sub">
                             <li class="nk-menu-item">
-                                <a href="html/pharmacy/add-wastage-return.html" class="nk-menu-link"><span class="nk-menu-text">Add Wastage Return</span></a>
+                                <a href="{{ route('transaction.create') }}" class="nk-menu-link"><span class="nk-menu-text">Ajouter une transaction</span></a>
                             </li>
                             <li class="nk-menu-item">
-                                <a href="html/pharmacy/wastage-return.html" class="nk-menu-link"><span class="nk-menu-text">Wastage Return List</span></a>
-                            </li>
-                            <li class="nk-menu-item">
-                                <a href="html/pharmacy/add-manufacturer-return.html" class="nk-menu-link"><span class="nk-menu-text">Add Manufacture Return</span></a>
-                            </li>
-                            <li class="nk-menu-item">
-                                <a href="html/pharmacy/manufacturer-return.html" class="nk-menu-link"><span class="nk-menu-text">Manufacturer Return List</span></a>
+                                <a href="{{ route('transaction.index') }}" class="nk-menu-link"><span class="nk-menu-text">Voir les transactions</span></a>
                             </li>
                         </ul><!-- .nk-menu-sub -->
                     </li><!-- .nk-menu-item -->
