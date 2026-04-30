@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transaction', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('categorie_id')->nullable()->constrained('categorie')->onDelete('set null');
+            $table->foreignId('categorie_id')->nullable()->constrained('categories')->onDelete('set null');
             $table->decimal('montant', 10, 2);
             $table->string('type'); // 'depense' ou 'revenu'
             $table->text('description')->nullable();
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transaction');
+        Schema::dropIfExists('transactions');
     }
 };
