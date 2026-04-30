@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Revenu extends Model
 {
+    protected $table = 'revenus';
     protected $fillable = ['source'];
     //
      public function transaction()

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Alerte extends Model
 {
+    protected $table = 'alertes';
     protected $fillable = ['type', 'message'];
     //
      public function user()

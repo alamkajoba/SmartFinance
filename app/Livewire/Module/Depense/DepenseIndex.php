@@ -39,12 +39,12 @@ class DepenseIndex extends Component
         // Calculs des totaux
         $totalDepenses = Depense::where('user_id', Auth::id())->sum('montant');
 
-        // Calcul du solde comme somme algébrique de toutes les transactions
-        $soldeTransactions = Transaction::where('user_id', Auth::id())
-            ->selectRaw('SUM(CASE WHEN type = "revenu" THEN montant ELSE -montant END) as solde')
-            ->value('solde') ?? 0;
+        // Calcul du solde : revenus - dépenses enregistrées
+        $totalRevenus = Transaction::where('user_id', Auth::id())
+            ->where('type', 'revenu')
+            ->sum('montant');
 
-        $soldeRestant = $soldeTransactions - $totalDepenses;
+        $soldeRestant = $totalRevenus - $totalDepenses;
 
         // Pour l'affichage séparé (optionnel)
         $totalRevenus = Transaction::where('user_id', Auth::id())

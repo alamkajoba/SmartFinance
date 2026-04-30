@@ -72,22 +72,7 @@
                                             @error('categorie_id') <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label" for="transaction_id">Transaction liée (optionnel)</label>
-                                            <div class="form-control-wrap">
-                                                <select wire:model.defer="transaction_id" id="transaction_id" class="form-control">
-                                                    <option value="">-- Aucune transaction liée --</option>
-                                                    @foreach($transactions as $transaction)
-                                                        <option value="{{ $transaction->id }}">
-                                                            [{{ $transaction->type === 'revenu' ? 'REVENU' : 'DÉPENSE' }}] {{ $transaction->description }} ({{ number_format($transaction->montant, 2, ',', ' ') }} €)
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            @error('transaction_id') <span class="text-danger">{{ $message }}</span> @enderror
-                                        </div>
-                                    </div>
+                                  
                                     <div class="col-12">
                                         <button type="submit"
                                                 class="btn btn-primary"
@@ -101,7 +86,7 @@
                                             </div>
                                         @elseif($montant > $soldeRestant)
                                             <div class="mt-2">
-                                                <small class="text-danger">❌ Solde insuffisant ! Votre solde restant est de {{ number_format($soldeRestant, 2, ',', ' ') }} €.</small>
+                                                <small class="text-danger">❌ Solde insuffisant ! Votre solde restant est de {{ number_format($soldeRestant, 2, ',', ' ') }} USD.</small>
                                             </div>
                                         @endif
                                     </div>
