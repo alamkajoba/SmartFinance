@@ -101,7 +101,7 @@
                                             </div>
                                         @elseif($montant > $soldeRestant)
                                             <div class="mt-2">
-                                                <small class="text-danger">❌ Solde insuffisant ! Votre solde restant est de {{ number_format($soldeRestant, 2, ',', ' ') }} €.</small>
+                                                <small class="text-danger">❌ Solde insuffisant ! Votre solde restant est de {{ number_format($soldeRestant, 2, ',', ' ') }} USD.</small>
                                             </div>
                                         @endif
                                     </div>

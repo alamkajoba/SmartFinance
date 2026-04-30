@@ -64,21 +64,7 @@
                                             @error('description') <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
                                     </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <div class="form-control-wrap">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input wire:model.defer="cumuler" type="checkbox" id="cumuler" class="custom-control-input">
-                                                    <label class="custom-control-label" for="cumuler">
-                                                        Cumuler avec la dernière transaction du même type
-                                                    </label>
-                                                </div>
-                                                <small class="form-text text-muted">
-                                                    Si coché, le montant sera ajouté à votre dernière transaction {{ $type }} au lieu d'en créer une nouvelle.
-                                                </small>
-                                            </div>
-                                        </div>
-                                    </div>
+                                   
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-primary">Enregistrer</button>
                                         <a href="{{ route('transaction.index') }}" class="btn btn-outline-secondary">Annuler</a>
