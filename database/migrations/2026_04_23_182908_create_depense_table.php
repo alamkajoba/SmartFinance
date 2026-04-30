@@ -11,9 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('depense', function (Blueprint $table) {
+        Schema::create('depenses', function (Blueprint $table) {
             $table->id();
-            $table->categorie();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('categorie_id')->nullable()->constrained('categorie')->onDelete('set null');
+            $table->foreignId('transaction_id')->nullable()->constrained('transactions')->onDelete('set null');
+            $table->decimal('montant', 10, 2);
+            $table->string('description');
+            $table->date('date_depense');
             $table->timestamps();
         });
     }

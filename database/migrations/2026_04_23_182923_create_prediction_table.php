@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('prediction', function (Blueprint $table) {
             $table->id();
-            $table->mois();
-            $table->montantPrevu();
-            $table->precision();
+            $table->string('mois');
+            $table->decimal('montantPrevu', 10, 2);
+            $table->decimal('precision', 5, 2);
             $table->timestamps();
         });
     }

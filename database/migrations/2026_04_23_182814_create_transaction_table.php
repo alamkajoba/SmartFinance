@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('transaction', function (Blueprint $table) {
             $table->id();
-            $table->montant();
-            $table->type();
-            $table->description();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('categorie_id')->nullable()->constrained('categorie')->onDelete('set null');
+            $table->decimal('montant', 10, 2);
+            $table->string('type'); // 'depense' ou 'revenu'
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
