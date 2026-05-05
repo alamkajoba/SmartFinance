@@ -49,7 +49,7 @@ class DepenseCreate extends Component
             }
         }
 
-        // Calculer le solde restant : somme des revenus - dépenses enregistrées
+        // Calculer le solde restant uniquement à partir des revenus, puis soustraire les dépenses enregistrées
         $totalRevenus = Transaction::where('user_id', Auth::id())
             ->where('type', 'revenu')
             ->sum('montant') ?? 0;
@@ -59,7 +59,7 @@ class DepenseCreate extends Component
 
         // Vérifier que le solde restant est suffisant pour cette dépense
         if ($this->montant > $soldeRestant) {
-            session()->flash('error', 'Solde insuffisant ! Revenus: ' . number_format($totalRevenus, 2, ',', ' ') . ' EUR - Dépenses: ' . number_format($totalDepenses, 2, ',', ' ') . ' USD = Solde: ' . number_format($soldeRestant, 2, ',', ' ') . ' USD. Vous ne pouvez pas enregistrer une dépense de ' . number_format($this->montant, 2, ',', ' ') . ' EUR.');
+            session()->flash('error', 'Solde insuffisant ! Revenus totaux : ' . number_format($totalRevenus, 2, ',', ' ') . ' EUR - Dépenses totales : ' . number_format($totalDepenses, 2, ',', ' ') . ' EUR = ' . number_format($soldeRestant, 2, ',', ' ') . ' EUR. Impossible d\'enregistrer une dépense de ' . number_format($this->montant, 2, ',', ' ') . ' EUR.');
             return;
         }
 
@@ -104,7 +104,7 @@ class DepenseCreate extends Component
     {
         $totalRevenus = Transaction::where('user_id', Auth::id())
             ->where('type', 'revenu')
-            ->sum('montant');
+            ->sum('montant') ?? 0;
 
         $totalDepenses = Depense::where('user_id', Auth::id())->sum('montant');
 

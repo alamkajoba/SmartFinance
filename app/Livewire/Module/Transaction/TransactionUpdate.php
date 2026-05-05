@@ -13,7 +13,7 @@ class TransactionUpdate extends Component
 {
     public int $id;
     public float $montant = 0.0;
-    public string $type = 'depense';
+    public string $type = 'revenu';
     public ?int $categorie_id = null;
     public ?string $description = '';
 
@@ -36,8 +36,8 @@ class TransactionUpdate extends Component
     {
         $this->validate([
             'montant' => 'required|numeric|min:0.01',
-            'type' => 'required|in:depense,revenu',
-            'categorie_id' => 'nullable|exists:categorie,id',
+            'type' => 'required|in:revenu,depense',
+            'categorie_id' => 'nullable|exists:categories,id',
             'description' => 'nullable|string|max:500',
         ]);
 

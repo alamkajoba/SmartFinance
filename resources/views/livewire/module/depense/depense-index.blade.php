@@ -38,7 +38,7 @@
                         </div>
                         <div class="align-end flex-sm-wrap g-4 align-items-center">
                             <div class="nk-sale-data">
-                                <span class="amount text-success">+ {{ number_format($totalRevenus, 2, ',', ' ') }} €</span>
+                                <span class="amount text-success">+ {{ number_format($totalRevenus, 2, ',', ' ') }} USD</span>
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                         </div>
                         <div class="align-end flex-sm-wrap g-4 align-items-center">
                             <div class="nk-sale-data">
-                                <span class="amount text-danger">- {{ number_format($totalDepenses, 2, ',', ' ') }} €</span>
+                                <span class="amount text-danger">- {{ number_format($totalDepenses, 2, ',', ' ') }} USD</span>
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                         <div class="align-end flex-sm-wrap g-4 align-items-center">
                             <div class="nk-sale-data">
                                 <span class="amount {{ $soldeRestant >= 0 ? 'text-success' : 'text-danger' }}">
-                                    {{ $soldeRestant >= 0 ? '+' : '' }}{{ number_format($soldeRestant, 2, ',', ' ') }} €
+                                    {{ $soldeRestant >= 0 ? '+' : '' }}{{ number_format($soldeRestant, 2, ',', ' ') }} USD
                                 </span>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
                     <div class="nk-tb-item nk-tb-head">
                         <div class="nk-tb-col"><span class="sub-text">Description</span></div>
                         <div class="nk-tb-col"><span class="sub-text">Catégorie</span></div>
-                        <div class="nk-tb-col"><span class="sub-text">Transaction liée</span></div>
+                        
                         <div class="nk-tb-col"><span class="sub-text">Montant</span></div>
                         <div class="nk-tb-col"><span class="sub-text">Date</span></div>
                         <div class="nk-tb-col nk-tb-col-tools text-end"><span class="sub-text">Actions</span></div>
