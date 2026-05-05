@@ -39,17 +39,12 @@ class DepenseIndex extends Component
         // Calculs des totaux
         $totalDepenses = Depense::where('user_id', Auth::id())->sum('montant');
 
-        // Calcul du solde : revenus - dépenses enregistrées
+        // Calcul du solde restant uniquement sur les revenus
         $totalRevenus = Transaction::where('user_id', Auth::id())
             ->where('type', 'revenu')
             ->sum('montant');
 
         $soldeRestant = $totalRevenus - $totalDepenses;
-
-        // Pour l'affichage séparé (optionnel)
-        $totalRevenus = Transaction::where('user_id', Auth::id())
-            ->where('type', 'revenu')
-            ->sum('montant');
 
         return view('livewire.module.depense.depense-index', [
             'depenses' => $depenses,

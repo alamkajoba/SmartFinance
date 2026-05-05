@@ -37,7 +37,7 @@
                                             </div>
                                             @error('montant') <span class="text-danger">{{ $message }}</span> @enderror
                                             @if($transaction_id && $maxMontant && $montant > $maxMontant)
-                                                <small class="text-warning">⚠️ Le montant ne peut pas dépasser {{ number_format($maxMontant, 2, ',', ' ') }} USD (montant de la transaction liée)</small>
+                                                <small class="text-warning">⚠️ Le montant ne peut pas dépasser {{ number_format($maxMontant, 2, ',', ' ') }} USD</small>
                                             @elseif($transaction_id && $maxMontant)
                                                 <small class="text-info">💡 Montant maximum disponible : {{ number_format($maxMontant, 2, ',', ' ') }} €</small>
                                             @endif

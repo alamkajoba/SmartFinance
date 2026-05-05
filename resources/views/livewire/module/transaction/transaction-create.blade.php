@@ -26,7 +26,8 @@
                                             <div class="form-control-wrap">
                                                 <select wire:model.defer="type" id="type" class="form-control">
                                          
-                                                    <option value="revenu">Revenu</option>
+                                                    <option value="revenu" selected>Revenu</option>
+                                                    <option value="depense">Dépense</option>
                                                 </select>
                                             </div>
                                             @error('type') <span class="text-danger">{{ $message }}</span> @enderror
