@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Module\Depense;
 
+use App\Livewire\Actions\GenerateAutomaticAlerts;
 use App\Models\Depense;
 use App\Models\Transaction;
 use App\Models\Categorie;
@@ -71,6 +72,9 @@ class DepenseCreate extends Component
             'description' => $this->description,
             'date_depense' => $this->date_depense,
         ]);
+
+        // Générer automatiquement les alertes de dépassement après création de la dépense
+        GenerateAutomaticAlerts::execute(Auth::id());
 
         session()->flash('message', 'Dépense enregistrée avec succès.');
 

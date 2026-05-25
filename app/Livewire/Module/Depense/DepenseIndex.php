@@ -46,11 +46,26 @@ class DepenseIndex extends Component
 
         $soldeRestant = $totalRevenus - $totalDepenses;
 
+        // Calcul des dépenses par catégorie
+        $depensesParCategorie = Depense::where('user_id', Auth::id())
+            ->with('categorie')
+            ->selectRaw('categorie_id, SUM(montant) as total_montant, COUNT(*) as nombre_depenses')
+            ->groupBy('categorie_id')
+            ->get()
+            ->map(function($item) {
+                return [
+                    'categorie' => $item->categorie?->nomCategorie ?? 'Sans catégorie',
+                    'total_montant' => $item->total_montant,
+                    'nombre_depenses' => $item->nombre_depenses
+                ];
+            });
+
         return view('livewire.module.depense.depense-index', [
             'depenses' => $depenses,
             'totalDepenses' => $totalDepenses,
             'totalRevenus' => $totalRevenus,
-            'soldeRestant' => $soldeRestant
+            'soldeRestant' => $soldeRestant,
+            'depensesParCategorie' => $depensesParCategorie
         ]);
     }
 

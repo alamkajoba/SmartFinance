@@ -120,41 +120,15 @@
                     </li><!-- .nk-menu-item -->
                     <li class="nk-menu-item has-sub">
                         <a href="#" class="nk-menu-link nk-menu-toggle">
-                            <span class="nk-menu-icon"><em class="icon ni ni-user-circle-fill"></em></span>
+                            <span class="nk-menu-icon"><em class="icon ni ni-trending-up-fill"></em></span>
                             <span class="nk-menu-text">Prédictions</span>
                         </a>
                         <ul class="nk-menu-sub">
                             <li class="nk-menu-item">
-                                <a href="html/pharmacy/member.html" class="nk-menu-link"><span class="nk-menu-text">Member</span></a>
+                                <a href="{{ route('prediction.index') }}" class="nk-menu-link"><span class="nk-menu-text">Voir les prédictions</span></a>
                             </li>
                             <li class="nk-menu-item">
-                                <a href="html/pharmacy/members-profile-regular.html" class="nk-menu-link"><span class="nk-menu-text">Members Profile</span></a>
-                            </li>
-                            <li class="nk-menu-item">
-                                <a href="html/pharmacy/attendence.html" class="nk-menu-link"><span class="nk-menu-text">Attendence</span></a>
-                            </li>
-                            <li class="nk-menu-item">
-                                <a href="html/pharmacy/salary.html" class="nk-menu-link"><span class="nk-menu-text">Salary</span></a>
-                            </li>
-                        </ul><!-- .nk-menu-sub -->
-                    </li><!-- .nk-menu-item -->
-                    <li class="nk-menu-item has-sub">
-                        <a href="#" class="nk-menu-link nk-menu-toggle">
-                            <span class="nk-menu-icon"><em class="icon ni ni-coin-alt-fill"></em></span>
-                            <span class="nk-menu-text">Alerte</span>
-                        </a>
-                        <ul class="nk-menu-sub">
-                            <li class="nk-menu-item">
-                                <a href="html/pharmacy/income-list.html" class="nk-menu-link"><span class="nk-menu-text">Income</span></a>
-                            </li>
-                            <li class="nk-menu-item">
-                                <a href="html/pharmacy/expense-list.html" class="nk-menu-link"><span class="nk-menu-text">Expence</span></a>
-                            </li>
-                            <li class="nk-menu-item">
-                                <a href="html/pharmacy/invoice-list.html" class="nk-menu-link"><span class="nk-menu-text">Invoice List</span></a>
-                            </li>
-                            <li class="nk-menu-item">
-                                <a href="html/pharmacy/invoice-details.html" class="nk-menu-link"><span class="nk-menu-text">Invoice Details</span></a>
+                                <a href="{{ route('alerte.index') }}" class="nk-menu-link"><span class="nk-menu-text">Voir les alertes</span></a>
                             </li>
                         </ul><!-- .nk-menu-sub -->
                     </li><!-- .nk-menu-item -->

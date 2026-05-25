@@ -5,6 +5,8 @@ use App\Livewire\Module\Categorie\CategorieIndex;
 use App\Livewire\Module\Categorie\CategorieUpdate;
 use App\Livewire\Module\Depense\DepenseCreate;
 use App\Livewire\Module\Depense\DepenseIndex;
+use App\Livewire\Module\Prediction\PredictionIndex;
+use App\Livewire\Module\Alerte\AlerteIndex;
 use App\Livewire\Module\Transaction\TransactionCreate;
 use App\Livewire\Module\Transaction\TransactionIndex;
 use App\Livewire\Module\Transaction\TransactionUpdate;
@@ -42,6 +44,16 @@ Route::middleware('auth')->prefix('transaction')->name('transaction.')->group(fu
 Route::middleware('auth')->prefix('depense')->name('depense.')->group(function () {
     Route::get('index', DepenseIndex::class)->name('index');
     Route::get('create', DepenseCreate::class)->name('create');
+});
+
+// PREDICTION ROUTES
+Route::middleware('auth')->prefix('prediction')->name('prediction.')->group(function () {
+    Route::get('index', PredictionIndex::class)->name('index');
+});
+
+// ALERTE ROUTES
+Route::middleware('auth')->prefix('alerte')->name('alerte.')->group(function () {
+    Route::get('index', AlerteIndex::class)->name('index');
 });
 
 Route::view('profile', 'profile')
