@@ -69,6 +69,47 @@
                         </div>
                     </div>
                 </li>
+                <li class="dropdown notification-dropdown hide-mb-xs">
+                    @php $alertCount = Auth::check() ? Auth::user()->alertes()->where('is_read', false)->count() : 0; @endphp
+                    <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
+                        <div class="icon-status icon-status-warning"><em class="icon ni ni-bell-fill"></em></div>
+                        @if($alertCount > 0)
+                            <span class="badge badge-dot bg-warning"></span>
+                        @endif
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-xl dropdown-menu-end">
+                        <div class="dropdown-head">
+                            <span class="sub-title nk-dropdown-title">Alertes</span>
+                            <a href="{{ route('alerte.index') }}">Voir</a>
+                        </div>
+                        <div class="dropdown-body">
+                            <div class="nk-notification">
+                                @if($alertCount > 0)
+                                    @foreach(Auth::user()->alertes()->where('is_read', false)->orderBy('date_alerte', 'desc')->limit(5)->get() as $alerte)
+                                        <div class="nk-notification-item dropdown-inner">
+                                            <div class="nk-notification-icon">
+                                                <em class="icon ni ni-alert-fill"></em>
+                                            </div>
+                                            <div class="nk-notification-content">
+                                                <div class="nk-notification-text">{{ $alerte->message }}</div>
+                                                <div class="nk-notification-time">{{ $alerte->date_alerte->format('d/m/Y') }}</div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <div class="nk-notification-item">
+                                        <div class="nk-notification-content">
+                                            <div class="nk-notification-text">Aucune alerte</div>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="dropdown-foot center">
+                            <a href="{{ route('alerte.index') }}">Voir toutes les alertes</a>
+                        </div>
+                    </div>
+                </li>
                 <li class="dropdown user-dropdown">
                     <a href="" class="dropdown-toggle me-n1" data-bs-toggle="dropdown">
                         <div class="user-toggle">

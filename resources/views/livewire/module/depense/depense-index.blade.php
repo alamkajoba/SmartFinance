@@ -81,6 +81,48 @@
         </div>
     </div>
 
+    <!-- Résumé par catégorie -->
+    <div class="nk-block">
+        <div class="card card-bordered">
+            <div class="card-inner">
+                <div class="card-title-group align-start mb-3">
+                    <div class="card-title">
+                        <h6 class="title">Dépenses par Catégorie</h6>
+                    </div>
+                </div>
+                <div class="row g-3">
+                    @forelse($depensesParCategorie as $categorie)
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card card-bordered h-100">
+                                <div class="card-inner">
+                                    <div class="card-title-group align-start mb-2">
+                                        <div class="card-title">
+                                            <h6 class="title">{{ $categorie['categorie'] }}</h6>
+                                        </div>
+                                        <div class="card-tools">
+                                            <span class="badge badge-outline badge-primary">{{ $categorie['nombre_depenses'] }} dépense{{ $categorie['nombre_depenses'] > 1 ? 's' : '' }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="align-end flex-sm-wrap g-4 align-items-center">
+                                        <div class="nk-sale-data">
+                                            <span class="amount text-danger">- {{ number_format($categorie['total_montant'], 2, ',', ' ') }} €</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="col-12">
+                            <div class="text-center text-muted">
+                                <p>Aucune dépense enregistrée.</p>
+                            </div>
+                        </div>
+                    @endforelse
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Liste des dépenses -->
     <div class="nk-block">
         <div class="card card-bordered card-stretch">
@@ -119,10 +161,10 @@
                                 <span class="tb-lead">{{ $depense->description }}</span>
                             </div>
                             <div class="nk-tb-col">
-                                <span>{{ $depense->categorie?->nomCategorie ?? '-' }}</span>
+                                <span class="badge badge-outline badge-primary">{{ $depense->categorie?->nomCategorie ?? 'Sans catégorie' }}</span>
                             </div>
                             <div class="nk-tb-col">
-                                <span>{{ $depense->transaction?->description ?? '-' }}</span>
+                                <span>{{ $depense->transaction?->montant ?? '-' }}</span>
                             </div>
                             <div class="nk-tb-col">
                                 <span class="badge badge-danger">

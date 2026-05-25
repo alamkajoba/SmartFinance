@@ -32,15 +32,17 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-      public function transaction()
+    public function transaction()
     {
         return $this->hasMany(Transaction::class);
     }
-      public function prediction()
+
+    public function predictions()
     {
-        return $this->hasMany(Predictio::class);
+        return $this->hasMany(Prediction::class);
     }
-      public function alerte()
+
+    public function alertes()
     {
         return $this->hasMany(Alerte::class);
     }
