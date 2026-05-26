@@ -15,60 +15,7 @@
         </div><!-- .nk-header-news -->
         <div class="nk-header-tools">
             <ul class="nk-quick-nav">
-                <li class="dropdown chats-dropdown hide-mb-xs">
-                    <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
-                        <div class="icon-status icon-status-na"><em class="icon ni ni-comments"></em></div>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-xl dropdown-menu-end">
-                        <div class="dropdown-head">
-                            <span class="sub-title nk-dropdown-title">Recent Chats</span>
-                            <a href="#">Setting</a>
-                        </div>
-                        <div class="dropdown-body">
-                            <ul class="chat-list">
-                                <li class="chat-item is-unread">
-                                    <a class="chat-link" href="html/apps-chats.html">
-                                        <div class="chat-media user-avatar bg-pink">
-                                            <span>AB</span>
-                                            <span class="status dot dot-lg dot-success"></span>
-                                        </div>
-                                        <div class="chat-info">
-                                            <div class="chat-from">
-                                                <div class="name">Abu Bin Ishtiyak</div>
-                                                <span class="time">4:49 AM</span>
-                                            </div>
-                                            <div class="chat-context">
-                                                <div class="text">Hi, I am Ishtiyak, can you help me with this problem ?</div>
-                                                <div class="status unread">
-                                                    <em class="icon ni ni-bullet-fill"></em>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li><!-- .chat-item -->
-                                <li class="chat-item">
-                                    <a class="chat-link" href="html/apps-chats.html">
-                                        <div class="chat-media user-avatar">
-                                            <img src="./images/avatar/b-sm.jpg" alt="">
-                                        </div>
-                                        <div class="chat-info">
-                                            <div class="chat-from">
-                                                <div class="name">George Philips</div>
-                                                <span class="time">6 Apr</span>
-                                            </div>
-                                            <div class="chat-context">
-                                                <div class="text">Have you seens the claim from Rose?</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li><!-- .chat-item -->
-                            </ul><!-- .chat-list -->
-                        </div><!-- .nk-dropdown-body -->
-                        <div class="dropdown-foot center">
-                            <a href="html/apps-chats.html">View All</a>
-                        </div>
-                    </div>
-                </li>
+                
                 <li class="dropdown user-dropdown">
                     <a href="" class="dropdown-toggle me-n1" data-bs-toggle="dropdown">
                         <div class="user-toggle">
