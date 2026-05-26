@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('predictions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('mois');
             $table->decimal('montantPrevu', 10, 2);
             $table->decimal('precision', 5, 2);

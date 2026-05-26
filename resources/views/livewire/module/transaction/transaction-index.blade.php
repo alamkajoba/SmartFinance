@@ -56,6 +56,7 @@
                         <div class="nk-tb-col"><span class="sub-text">Catégorie</span></div>
                         <div class="nk-tb-col"><span class="sub-text">Montant</span></div>
                         <div class="nk-tb-col"><span class="sub-text">Type</span></div>
+                        <div class="nk-tb-col"><span class="sub-text">Date</span></div>
                         <div class="nk-tb-col nk-tb-col-tools text-end"><span class="sub-text">Actions</span></div>
                     </div>
 
@@ -77,6 +78,9 @@
                                     {{ $transaction->type === 'revenu' ? 'Revenu' : 'Dépense' }}
                                 </span>
                             </div>
+                            <div class="nk-tb-col">
+                                <span class="text-muted">{{ $transaction->created_at->format('d/m/Y H:i') }}</span>
+                            </div>
                             <div class="nk-tb-col nk-tb-col-tools">
                                 <ul class="nk-tb-actions gx-1 justify-end">
                                     <li>
@@ -90,7 +94,7 @@
                         </div>
                     @empty
                         <div class="nk-tb-item">
-                            <div class="nk-tb-col" colspan="5">
+                            <div class="nk-tb-col" colspan="6">
                                 <p class="text-center text-muted">Aucune transaction trouvée.</p>
                             </div>
                         </div>
