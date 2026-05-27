@@ -66,13 +66,10 @@
                         </a>
                         <ul class="nk-menu-sub">
                             <li class="nk-menu-item">
-                                <a href="html/pharmacy/add-customer.html" class="nk-menu-link"><span class="nk-menu-text">Add Customer</span></a>
+                                <a href="{{route('user.create')}}" class="nk-menu-link"><span class="nk-menu-text">Ajouter un utilisateur</span></a>
                             </li>
                             <li class="nk-menu-item">
-                                <a href="html/pharmacy/customer.html" class="nk-menu-link"><span class="nk-menu-text">Customer List</span></a>
-                            </li>
-                            <li class="nk-menu-item">
-                                <a href="html/pharmacy/customer-ledger.html" class="nk-menu-link"><span class="nk-menu-text">Customer Ledger</span></a>
+                                <a href="{{route('user.index')}}" class="nk-menu-link"><span class="nk-menu-text">Voir la liste</span></a>
                             </li>
                         </ul><!-- .nk-menu-sub -->
                     </li><!-- .nk-menu-item -->

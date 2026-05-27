@@ -69,7 +69,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="dropdown notification-dropdown hide-mb-xs">
+                {{-- <li class="dropdown notification-dropdown hide-mb-xs">
                     @php $alertCount = Auth::check() ? Auth::user()->alertes()->where('is_read', false)->count() : 0; @endphp
                     <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
                         <div class="icon-status icon-status-warning"><em class="icon ni ni-bell-fill"></em></div>
@@ -109,7 +109,7 @@
                             <a href="{{ route('alerte.index') }}">Voir toutes les alertes</a>
                         </div>
                     </div>
-                </li>
+                </li> --}}
                 <li class="dropdown user-dropdown">
                     <a href="" class="dropdown-toggle me-n1" data-bs-toggle="dropdown">
                         <div class="user-toggle">
