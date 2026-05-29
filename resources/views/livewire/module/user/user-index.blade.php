@@ -4,12 +4,12 @@
             <div class="nk-block-head-content">
                 <h3 class="nk-block-title page-title">Administrateurs</h3>
                 <div class="nk-block-des text-soft">
-                    <p>Vous avez un total de 163 utilisants le système</p>
+                    <p><strong>{{$countUser}}</strong> utilisateurs du système</p>
                 </div>
             </div><!-- .nk-block-head-content -->
             <div class="nk-block-head-content">
-                <a href="html/hospital/patient-add.html" class="btn btn-icon btn-primary d-md-none"><em class="icon ni ni-plus"></em></a>
-                <a href="html/hospital/patient-add.html" class="btn btn-primary d-none d-md-inline-flex"><em class="icon ni ni-plus"></em><span>Ajouter un admnistrateur</span></a>
+                <a href="{{route('user.create')}}" class="btn btn-icon btn-primary d-md-none"><em class="icon ni ni-plus"></em></a>
+                <a href="{{route('user.create')}}" class="btn btn-primary d-none d-md-inline-flex"><em class="icon ni ni-plus"></em><span>Ajouter un admnistrateur</span></a>
             </div><!-- .nk-block-head-content -->
         </div><!-- .nk-block-between -->
     </div><!-- .nk-block-head -->

@@ -21,10 +21,12 @@ class UserIndex extends Component
     #[Url(as: 'q')]
 
     public ?string $search = '';
+    public $countUser;
     
     public function render()
     {
-        $user = User::latest()->search($this->search)->paginate(1);
+        $user = User::latest()->search($this->search)->paginate(5);
+        $this->countUser = User::count();
         return view('livewire.module.user.user-index',['user' => $user]);
     }
 }

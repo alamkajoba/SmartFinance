@@ -23,7 +23,6 @@ class UserCreate extends Component
 
     public function ajouterUtilisateur()
     {
-        $this->validate();
         $inserer = User::create([
             'name' => $this->nom,
             'email' => $this->email,

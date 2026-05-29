@@ -26,7 +26,7 @@
                                                 <div class="form-group">
                                                     <label class="form-label" for="full-name">Nom complet</label>
                                                     <div class="form-control-wrap">
-                                                        <input name="nom" type="text" class="form-control" id="full-name" placeholder="Full Name">
+                                                        <input wire:model="nom" type="text" class="form-control" id="full-name" placeholder="Full Name">
                                                     </div>
                                                 </div>
                                             </div><!--col-->
@@ -34,7 +34,7 @@
                                                 <div class="form-group">
                                                     <label class="form-label" for="full-name">Email</label>
                                                     <div class="form-control-wrap">
-                                                        <input name="email" type="email" class="form-control" id="full-name" placeholder="Full Name">
+                                                        <input wire:model="email" type="email" class="form-control" id="full-name" placeholder="Full Name">
                                                     </div>
                                                 </div>
                                             </div><!--col-->
@@ -42,7 +42,7 @@
                                                 <div class="form-group">
                                                     <label class="form-label" for="full-name">Mot de passe  </label>
                                                     <div class="form-control-wrap">
-                                                        <input name="motDePasse" type="password" class="form-control" id="full-name" placeholder="Full Name">
+                                                        <input wire:model="motDePasse" type="password" class="form-control" id="full-name" placeholder="Full Name">
                                                     </div>
                                                 </div>
                                             </div><!--col-->
