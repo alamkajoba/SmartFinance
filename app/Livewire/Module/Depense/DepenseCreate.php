@@ -9,6 +9,7 @@ use App\Models\Categorie;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 #[Layout('layouts.app')]
 class DepenseCreate extends Component
@@ -44,41 +45,56 @@ class DepenseCreate extends Component
 
             // Vérifier que le montant de la dépense ne dépasse pas le montant de la transaction
             // seulement si c'est un revenu
-            if ($transaction->type === 'revenu' && $this->montant > $transaction->montant) {
-                session()->flash('error', 'Le montant de la dépense ne peut pas dépasser le montant de la transaction liée (' . number_format($transaction->montant, 2, ',', ' ') . ' USD).');
-                return;
+            if ($transaction->type === 'revenu') {
+                $depensesAssociees = Depense::where('transaction_id', $this->transaction_id)->sum('montant') ?? 0;
+                if (floatval($depensesAssociees) + floatval($this->montant) > floatval($transaction->montant)) {
+                    session()->flash('error', 'Le montant de la dépense dépasse le solde disponible sur la transaction liée (' . number_format($transaction->montant, 2, ',', ' ') . ').');
+                    return;
+                }
             }
         }
 
         // Calculer le solde restant uniquement à partir des revenus, puis soustraire les dépenses enregistrées
-        $totalRevenus = Transaction::where('user_id', Auth::id())
+        $totalRevenus = floatval(Transaction::where('user_id', Auth::id())
             ->where('type', 'revenu')
-            ->sum('montant') ?? 0;
+            ->sum('montant') ?? 0);
 
-        $totalDepenses = Depense::where('user_id', Auth::id())->sum('montant') ?? 0;
+        $totalDepenses = floatval(Depense::where('user_id', Auth::id())->sum('montant') ?? 0);
         $soldeRestant = $totalRevenus - $totalDepenses;
 
         // Vérifier que le solde restant est suffisant pour cette dépense
-        if ($this->montant > $soldeRestant) {
+        if (floatval($this->montant) > $soldeRestant) {
             session()->flash('error', 'Solde insuffisant ! Revenus totaux : ' . number_format($totalRevenus, 2, ',', ' ') . ' EUR - Dépenses totales : ' . number_format($totalDepenses, 2, ',', ' ') . ' EUR = ' . number_format($soldeRestant, 2, ',', ' ') . ' EUR. Impossible d\'enregistrer une dépense de ' . number_format($this->montant, 2, ',', ' ') . ' EUR.');
             return;
         }
 
-        Depense::create([
-            'user_id' => Auth::id(),
-            'montant' => $this->montant,
-            'categorie_id' => $this->categorie_id,
-            'transaction_id' => $this->transaction_id,
-            'description' => $this->description,
-            'date_depense' => $this->date_depense,
-        ]);
+        // Utiliser une transaction DB pour assurer la cohérence
+        try {
+            DB::beginTransaction();
 
-        // Générer automatiquement les alertes de dépassement après création de la dépense
-        GenerateAutomaticAlerts::execute(Auth::id());
+            Depense::create([
+                'user_id' => Auth::id(),
+                'montant' => $this->montant,
+                'categorie_id' => $this->categorie_id,
+                'transaction_id' => $this->transaction_id,
+                'description' => $this->description,
+                'date_depense' => $this->date_depense,
+            ]);
 
-        session()->flash('message', 'Dépense enregistrée avec succès.');
+            // Générer automatiquement les alertes de dépassement après création de la dépense
+            GenerateAutomaticAlerts::execute(Auth::id());
 
-        return redirect()->route('depense.index');
+            DB::commit();
+
+            session()->flash('message', 'Dépense enregistrée avec succès.');
+
+            return redirect()->route('depense.index');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            report($e);
+            session()->flash('error', 'Une erreur est survenue lors de l\'enregistrement de la dépense.');
+            return;
+        }
     }
 
     public function updatedTransactionId()

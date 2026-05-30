@@ -44,16 +44,21 @@ class GenerateAutomaticAlerts
         // Alerte 1: Dépenses totales dépassent la prédiction
         if ($prediction && $totalDepensesActuelles > $prediction->montantPrevu) {
             $depassement = $totalDepensesActuelles - $prediction->montantPrevu;
-            $pourcentage = ($depassement / $prediction->montantPrevu) * 100;
-            
+            // Éviter la division par zéro si la prédiction est nulle ou négative
+            if (floatval($prediction->montantPrevu) > 0) {
+                $pourcentage = ($depassement / $prediction->montantPrevu) * 100;
+            } else {
+                $pourcentage = 100;
+            }
+
             $niveau = $pourcentage > 50 ? 'danger' : ($pourcentage > 20 ? 'warning' : 'info');
-            
+
             $alerte = self::createOrUpdateAlert([
                 'user_id' => $userId,
                 'type' => 'prediction_depassee',
                 'categorie' => 'total',
                 'niveau' => $niveau,
-                'message' => "Attention! Vos dépenses actuelles ({$totalDepensesActuelles}USD) dépassent la prédiction ({$prediction->montantPrevu}USD) de " . number_format($pourcentage, 1) . "%",
+                'message' => "Attention! Vos dépenses actuelles ({$totalDepensesActuelles} USD) dépassent la prédiction ({$prediction->montantPrevu} USD) de " . number_format($pourcentage, 1) . "%",
                 'montant' => $totalDepensesActuelles,
                 'date_alerte' => now()->toDateString(),
             ]);
@@ -67,7 +72,7 @@ class GenerateAutomaticAlerts
         foreach ($depensesParCategorie as $categorieId => $categoryDepenses) {
             $totalCat = $categoryDepenses->sum('montant');
             $depense = $categoryDepenses->first();
-            $categorieName = $depense->categorie->nomCategorie ?? 'Sans catégorie';
+            $categorieName = ($depense && $depense->categorie) ? $depense->categorie->nomCategorie : 'Sans catégorie';
             
             // Comparer avec le même mois l'année précédente ou avec une moyenne
             $lastYearDate = $now->copy()->subYear();
@@ -89,9 +94,9 @@ class GenerateAutomaticAlerts
                         'type' => 'categorie_depassee',
                         'categorie' => $categorieName,
                         'niveau' => $niveau,
-                        'message' => "La catégorie '{$categorieName}' a augmenté de " . number_format($pourcentage, 1) . "% par rapport au mois dernier",
+                        'message' => "La catégorie '{$categorieName}' a augmenté de " . number_format($pourcentage, 1) . "% par rapport au même mois l'année précédente",
                         'montant' => $totalCat,
-                        'date_alerte' => now()->date(),
+                        'date_alerte' => now()->toDateString(),
                     ]);
                     
                     $alertes[] = $alerte;

@@ -24,26 +24,35 @@
                                         <div class="row gy-4">
                                             <div class="col-xxl-3 col-md-4">
                                                 <div class="form-group">
-                                                    <label class="form-label" for="full-name">Nom complet</label>
+                                                    <label class="form-label" for="nom">Nom complet</label>
                                                     <div class="form-control-wrap">
-                                                        <input wire:model="nom" type="text" class="form-control" id="full-name" placeholder="Full Name">
+                                                        <input wire:model="nom" type="text" class="form-control" id="nom" placeholder="Nom complet">
                                                     </div>
+                                                    @error('nom')
+                                                        <span class="invalid-feedback d-block">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                             </div><!--col-->
                                             <div class="col-xxl-3 col-md-4">
                                                 <div class="form-group">
-                                                    <label class="form-label" for="full-name">Email</label>
+                                                    <label class="form-label" for="email">Email</label>
                                                     <div class="form-control-wrap">
-                                                        <input wire:model="email" type="email" class="form-control" id="full-name" placeholder="Full Name">
+                                                        <input wire:model="email" type="email" class="form-control" id="email" placeholder="Email">
                                                     </div>
+                                                    @error('email')
+                                                        <span class="invalid-feedback d-block">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                             </div><!--col-->
                                             <div class="col-xxl-3 col-md-4">
                                                 <div class="form-group">
-                                                    <label class="form-label" for="full-name">Mot de passe  </label>
+                                                    <label class="form-label" for="motDePasse">Mot de passe</label>
                                                     <div class="form-control-wrap">
-                                                        <input wire:model="motDePasse" type="password" class="form-control" id="full-name" placeholder="Full Name">
+                                                        <input wire:model="motDePasse" type="password" class="form-control" id="motDePasse" placeholder="Mot de passe">
                                                     </div>
+                                                    @error('motDePasse')
+                                                        <span class="invalid-feedback d-block">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                             </div><!--col-->
                                         </div><!--row-->
@@ -52,7 +61,7 @@
                                 <div class="card-inner">
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-primary">Add Patient</button>
+                                            <button type="submit" class="btn btn-primary">Ajouter un utilisateur</button>
                                         </div>
                                     </div><!--col-->
                                 </div><!-- .card-inner -->

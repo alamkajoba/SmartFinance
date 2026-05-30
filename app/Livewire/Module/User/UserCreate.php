@@ -11,25 +11,26 @@ use Livewire\Component;
 #[Layout('layouts.app')]
 class UserCreate extends Component
 {
+    public $nom = '';
+    public $email = '';
+    public $motDePasse = '';
 
-    // #[Validate('string|min:3')]
-    public $nom;
-
-    // #[Validate('string|email|min:3')]
-    public $email;
-
-    // #[Validate('string|min:6')]
-    public $motDePasse;
+    protected array $rules = [
+        'nom' => 'required|string|min:3',
+        'email' => 'required|string|email|unique:users,email',
+        'motDePasse' => 'required|string|min:6',
+    ];
 
     public function ajouterUtilisateur()
     {
-        $inserer = User::create([
+        $this->validate();
+
+        User::create([
             'name' => $this->nom,
             'email' => $this->email,
             'password' => Hash::make($this->motDePasse),
         ]);
 
-        session();
         return redirect()->route('user.index');
     }
 
